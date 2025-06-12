@@ -47,7 +47,7 @@ def read_shifts():
 def create_shift(shifts: List[dict]):
     url = "http://localhost:8181/shift"
 
-    max_retries = 10
+    max_retries = 5
     backoff_factor = 1
 
     # assert isinstance(shifts, list), "Shift must be a list of dictionaries"
@@ -66,4 +66,4 @@ def create_shift(shifts: List[dict]):
                     results.append({"error": str(e)})
                 sleep_time = backoff_factor * (2 ** attempt)
                 time.sleep(sleep_time)
-    return results
+    return {"results": results}
